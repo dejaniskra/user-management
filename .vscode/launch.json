@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "Debug-Local",
+          "program": "${workspaceFolder}/src/index.ts",
+          "preLaunchTask": "tsc: build - tsconfig.json",
+          "env": {
+            "NODE_ENV": "local"
+          },
+          "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+        }
+      ]
+}
