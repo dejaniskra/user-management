@@ -1,0 +1,2520 @@
+{
+	"info": {
+		"_postman_id": "61a36d9b-7299-4b0b-ba75-19c892e7d9ed",
+		"name": "User Management",
+		"description": "# Introduction\n\nThis API allows you to perform CRUD for users and their respective profiles.\n\n# Schema\n\n**User**\n\n``` json\n{\n    \"id\": \"string\",\n    \"username\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"verified\": boolean,\n    \"create_date\": \"date\",\n    \"update_date\": \"date\"\n}\n\n```\n\n**Profile**\n\n``` json\n{\n    \"id\": \"string\",\n    \"userId\": \"string\",\n    \"picture_url\": \"string\",\n    \"persona\": {\n        \"preferred_name\": \"string\",\n        \"suffix\": \"string\",\n        \"prefix\": \"string\",\n        \"dob\": \"string\",\n        \"sex\": \"string\",\n        \"languages\": [\n            \"string\"\n        ],\n        \"race\": \"string\",\n        \"ethnicity\": \"string\",\n        \"nationality\": \"string\",\n        \"pronouns\": [\n            \"string\"\n        ]\n    },\n    \"work\": {\n        \"jobs\": [\n            {\n                \"company\": \"string\",\n                \"occupation\": \"string\",\n                \"location\": {\n                    \"city\": \"string\",\n                    \"state\": \"string\",\n                    \"country\": \"string\",\n                    \"zip\": \"string\"\n                }\n            }\n        ],\n        \"looking\": \"boolean\"\n    },\n    \"addresses\": [\n        {\n            \"street\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country\": \"string\",\n            \"primary\": \"boolean\"\n        }\n    ],\n    \"social\": {\n        \"personal\": {\n            \"facebook\": \"string\",\n            \"instagram\": \"string\",\n            \"portfolio\": \"string\",\n            \"tiktok\": \"string\",\n            \"twitter\": \"string\"\n        },\n        \"professional\": {\n            \"github\": \"string\",\n            \"linked_in\": \"string\"\n        },\n        \"gaming\": {\n            \"nintendo\": \"string\",\n            \"origin\": \"string\",\n            \"playstation\": \"string\",\n            \"riot\": \"string\",\n            \"steam\": \"string\",\n            \"xbox\": \"string\"\n        }\n    },\n    \"create_date\": \"date\",\n    \"update_date\": \"date\"\n}\n\n```\n\n**Error**\n\n``` json\n{\n    \"message\": \"string\",\n    \"name\": \"string\"\n}\n\n```\n\n**Validation Errors**\n\n``` json\n{\n    \"validation_errors\": [\n        {\n            \"value\": \"string\",\n            \"msg\": \"string\",\n            \"param\": \"string\",\n            \"location\": \"string\"\n        }\n    ]\n}\n\n```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"dejiskra@gmail.com\",\n    \"first_name\": \"Dejan\",\n    \"last_name\": \"Iskra\",\n    \"password\": \"Lol101010@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"dejiskra@gmail.com\",\n    \"first_name\": \"Dejan\",\n    \"last_name\": \"Iskra\",\n    \"password\": \"Lol101010@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id\": \"61ea0daa3fbc33bfef6824a9\"\n}"
+						},
+						{
+							"name": "Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"dejiskra@gmail.com\",\n    \"first_name\": \"Dejan\",\n    \"last_name\": \"Iskra\",\n    \"password\": \"Lol101010@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"name\": \"AlreadyExistsError\",\n    \"message\": \"Username dejiskra@gmail.com already exists\"\n}"
+						},
+						{
+							"name": "Failed Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"dejiskra@gmail.com\",\n    \"first_name\": \"123\",\n    \"last_name\": \"\",\n    \"password\": \"Lol101010@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"validation_errors\": [\n        {\n            \"value\": \"123\",\n            \"msg\": \"Invalid value\",\n            \"param\": \"first_name\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": \"\",\n            \"msg\": \"Invalid value\",\n            \"param\": \"last_name\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Search Users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users?username=dejiskra@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "dejiskra@gmail.com"
+								},
+								{
+									"key": "first_name",
+									"value": "Bob",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "Iskra",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "By Username",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users?username=dejiskra@gmail.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "dejiskra@gmail.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"61ea224ac29d3f7c9e6c2b55\",\n        \"username\": \"dejiskra@gmail.com\",\n        \"first_name\": \"Dejan\",\n        \"last_name\": \"Iskra\",\n        \"verified\": false,\n        \"create_date\": \"2022-01-21T02:58:24.162Z\",\n        \"update_date\": \"2022-01-21T02:58:24.162Z\"\n    }\n]"
+						},
+						{
+							"name": "By First Name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users?first_name=Dejan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "first_name",
+											"value": "Dejan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"61ea224ac29d3f7c9e6c2b55\",\n        \"username\": \"dejiskra@gmail.com\",\n        \"first_name\": \"Dejan\",\n        \"last_name\": \"Iskra\",\n        \"verified\": false,\n        \"create_date\": \"2022-01-21T02:58:24.162Z\",\n        \"update_date\": \"2022-01-21T02:58:24.162Z\"\n    },\n    {\n        \"id\": \"13et223aw21d3f7c9e6c2b55\",\n        \"username\": \"dchampagne@gmail.com\",\n        \"first_name\": \"Dejan\",\n        \"last_name\": \"Champagne\",\n        \"verified\": false,\n        \"create_date\": \"2021-12-20T02:33:24.162Z\",\n        \"update_date\": \"2021-12-20T02:33:24.162Z\"\n    }\n]"
+						},
+						{
+							"name": "By Last Name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users?last_name=Iskra",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "last_name",
+											"value": "Iskra"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"61ea224ac29d3f7c9e6c2b55\",\n        \"username\": \"dejiskra@gmail.com\",\n        \"first_name\": \"Dejan\",\n        \"last_name\": \"Iskra\",\n        \"verified\": false,\n        \"create_date\": \"2022-01-21T02:58:24.162Z\",\n        \"update_date\": \"2022-01-21T02:58:24.162Z\"\n    },\n    {\n        \"id\": \"13et223aw21d3f7c9e6c2b55\",\n        \"username\": \"alexiskra@gmail.com\",\n        \"first_name\": \"Alex\",\n        \"last_name\": \"Iskra\",\n        \"verified\": false,\n        \"create_date\": \"2021-12-20T02:33:24.162Z\",\n        \"update_date\": \"2021-12-20T02:33:24.162Z\"\n    }\n]"
+						},
+						{
+							"name": "By First and Last Name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users?last_name=Iskra&first_name=Dejan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "last_name",
+											"value": "Iskra"
+										},
+										{
+											"key": "first_name",
+											"value": "Dejan"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"61ea224ac29d3f7c9e6c2b55\",\n        \"username\": \"dejiskra@gmail.com\",\n        \"first_name\": \"Dejan\",\n        \"last_name\": \"Iskra\",\n        \"verified\": false,\n        \"create_date\": \"2022-01-21T02:58:24.162Z\",\n        \"update_date\": \"2022-01-21T02:58:24.162Z\"\n    },\n    {\n        \"id\": \"13et223aw21d3f7c9e6c2b55\",\n        \"username\": \"dejaniskra@gmail.com\",\n        \"first_name\": \"Dejan\",\n        \"last_name\": \"Iskra\",\n        \"verified\": false,\n        \"create_date\": \"2021-12-20T02:33:24.162Z\",\n        \"update_date\": \"2021-12-20T02:33:24.162Z\"\n    }\n]"
+						},
+						{
+							"name": "No Results",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users?username=dejiskra@gmail.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "dejiskra@gmail.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "[\n    \n]"
+						},
+						{
+							"name": "Failed Validation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users?username=dejiskra",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "dejiskra"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"validation_errors\": [\n        {\n            \"value\": \"dejiskra\",\n            \"msg\": \"Invalid value\",\n            \"param\": \"username\",\n            \"location\": \"query\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "61b1764de6e36922254d378f"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "61b1764de6e36922254d379f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id\": \"61b1764de6e36922254d379f\",\n    \"username\": \"dejiskra@gmail.com\",\n    \"first_name\": \"Dejan\",\n    \"last_name\": \"Iskra\",\n    \"verified\": false,\n    \"create_date\": \"2022-01-21T02:58:24.162Z\",\n    \"update_date\": \"2022-01-21T02:58:24.162Z\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "61b1764de6e36922254d379f"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User id: 61b1764de6e36922254d379f not found\",\n    \"name\": \"NotFoundError\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Dejan\",\n    \"last_name\": \"Iskra\",\n    \"verified\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "61eae09b274faf982536aead"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"Dejan\",\n    \"last_name\": \"Iskra\",\n    \"verified\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "617d6df28cb3bac9f129d77a"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"Dejan\",\n    \"last_name\": \"Iskra\",\n    \"verified\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "617d6df28cb3bac9f129d77a"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User id: 61b1764de6e36922254d379f not found\",\n    \"name\": \"NotFoundError\"\n}"
+						},
+						{
+							"name": "Failed Validation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"\",\n    \"last_name\": \"Iskra\",\n    \"verified\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "617d6df28cb3bac9f129d77a"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"validation_errors\": [\n        {\n            \"value\": \"\",\n            \"msg\": \"Invalid value\",\n            \"param\": \"first_name\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "61e762b667929c283f4ce3c9"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "61e762b667929c283f4ce3c9"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "61e762b667929c283f4ce3c9"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User id: 61e762b667929c283f4ce3c9 not found\",\n    \"name\": \"NotFoundError\"\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Avatar",
+					"item": [
+						{
+							"name": "Upload Avatar",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatar",
+											"type": "file",
+											"src": "/Users/diskra/Desktop/manu.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile/avatar",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile",
+										"avatar"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61b178fdca9c9321d2af6816"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "avatar",
+													"type": "file",
+													"src": "/Users/diskra/Desktop/manu.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:7000/api/v1/users/:userId/profile/avatar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "7000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"profile",
+												"avatar"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "61b178fdca9c9321d2af6816"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "avatar",
+													"type": "file",
+													"src": "/Users/diskra/Desktop/manu.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:7000/api/v1/users/:userId/profile/avatar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "7000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"profile",
+												"avatar"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "61b178fdca9c9321d2af6816"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [],
+									"cookie": [],
+									"body": "{\n    \"message\": \"User id: 61b1764de6e36922254d379f not found\",\n    \"name\": \"NotFoundError\"\n}"
+								},
+								{
+									"name": "Feature Unavailable",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "avatar",
+													"type": "file",
+													"src": "/Users/diskra/Desktop/manu.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:7000/api/v1/users/:userId/profile/avatar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "7000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"profile",
+												"avatar"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "61b178fdca9c9321d2af6816"
+												}
+											]
+										}
+									},
+									"status": "Not Acceptable",
+									"code": 406,
+									"_postman_previewlanguage": "json",
+									"header": [],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Feature currently turned off\",\n    \"name\": \"FeatureUnavailableError\"\n}"
+								},
+								{
+									"name": "Image Not Valid",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "avatar",
+													"type": "file",
+													"src": "/Users/diskra/Documents/user-management/invalidImage.pdf"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:7000/api/v1/users/:userId/profile/avatar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "7000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"profile",
+												"avatar"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "61b178fdca9c9321d2af6816"
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Invalid image extension: pdf\",\n    \"name\": \"ImageNotValidError\"\n}"
+								},
+								{
+									"name": "File Missing",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://localhost:7000/api/v1/users/:userId/profile/avatar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "7000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"profile",
+												"avatar"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "61b178fdca9c9321d2af6816"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Avatar missing\",\n    \"name\": \"FileMissingError\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Avatar",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile/avatar",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile",
+										"avatar"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61b178fdca9c9321d2af6816"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://localhost:7000/api/v1/users/:userId/profile/avatar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "7000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"profile",
+												"avatar"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "61b178fdca9c9321d2af6816"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "http://localhost:7000/api/v1/users/:userId/profile/avatar",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "7000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"profile",
+												"avatar"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "61b178fdca9c9321d2af6816"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [],
+									"cookie": [],
+									"body": "{\n    \"message\": \"User id: 61b1764de6e36922254d379f not found\",\n    \"name\": \"NotFoundError\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create Profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":userId",
+								"profile"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "61b1764de6e36922254d379f"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61b1764de6e36922254d379f"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "User Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61b1764de6e36922254d379f"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Profile by userId: 61b1764de6e36922254d379f not found\",\n    \"name\": \"NotFoundError\"\n}"
+						},
+						{
+							"name": "Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61b1764de6e36922254d379f"
+										}
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"name\": \"AlreadyExistsError\",\n    \"message\": \"Profile for userId: 61b1764de6e36922254d379f already exists\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":userId",
+								"profile"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "61ea0daa3fbc33bfef6824a9"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success - Full",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61ea0daa3fbc33bfef6824a9"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id\": \"61eacc29f300b82198173e55\",\n    \"user_id\": \"61eacc29f300b82198173e4f\",\n    \"picture_url\": null,\n    \"persona\": {\n        \"preferred_name\": \"Alex\",\n        \"suffix\": \"suffix\",\n        \"prefix\": \"Mr.\",\n        \"dob\": \"12/17/1990\",\n        \"sex\": \"male\",\n        \"languages\": [\n            \"English\",\n            \"Macedonian\"\n        ],\n        \"race\": \"Martian\",\n        \"ethnicity\": \"white\",\n        \"nationality\": \"Merica\",\n        \"pronouns\": [\n            \"he\",\n            \"goat\"\n        ]\n    },\n    \"work\": {\n        \"jobs\": [\n            {\n                \"company\": \"Rocket Homes\",\n                \"occupation\": \"Senior Software Engineer\",\n                \"location\": {\n                    \"city\": \"Detroit\",\n                    \"state\": \"MI\",\n                    \"country\": \"USA\",\n                    \"zip\": \"48122\"\n                }\n            }\n        ],\n        \"looking\": true\n    },\n    \"addresses\": [\n        {\n            \"street\": \"313 Eminem St\",\n            \"city\": \"Detroit\",\n            \"state\": \"MI\",\n            \"zip\": \"48122\",\n            \"country\": \"USA\",\n            \"primary\": true\n        }\n    ],\n    \"social\": {\n        \"personal\": {\n            \"facebook\": \"https://facebook.com/wutwut\",\n            \"instagram\": \"https://instagram.com/wutwut\",\n            \"portfolio\": \"https://dejaniskra.com\",\n            \"tiktok\": \"https://tiktok.com/no\",\n            \"twitter\": \"https://twitter.com/wutwut\"\n        },\n        \"professional\": {\n            \"github\": \"https://github.com/dejaniskra\",\n            \"linked_in\": \"https://www.linkedin.com/in/dejan-iskra-131a1a177\"\n        },\n        \"gaming\": {\n            \"nintendo\": \"no\",\n            \"origin\": \"iskradejan\",\n            \"playstation\": \"iskradejan\",\n            \"riot\": \"Obel1x\",\n            \"steam\": \"Macedonian10\",\n            \"xbox\": \"no\"\n        }\n    },\n    \"create_date\": \"2022-01-21T15:04:53.092Z\",\n    \"update_date\": \"2022-01-21T15:08:32.535Z\"\n}"
+						},
+						{
+							"name": "Success - Default",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61ea0daa3fbc33bfef6824a9"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"id\": \"61eacc29f300b82198173e55\",\n    \"user_id\": \"61eacc29f300b82198173e4f\",\n    \"picture_url\": null,\n    \"persona\": null,\n    \"work\": null,\n    \"addresses\": [],\n    \"social\": null,\n    \"create_date\": \"2022-01-21T15:04:53.092Z\",\n    \"update_date\": \"2022-01-21T15:04:53.093Z\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61ea0daa3fbc33bfef6824a9"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User id: 61b1764de6e36922254d379f not found\",\n    \"name\": \"NotFoundError\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"persona\": {\n        \"preferred_name\": \"Alex\",\n        \"suffix\": \"suffix\",\n        \"prefix\": \"Mr.\",\n        \"dob\": \"12/17/1990\",\n        \"sex\": \"male\",\n        \"languages\": [\n            \"English\",\n            \"Macedonian\"\n        ],\n        \"race\": \"Martian\",\n        \"ethnicity\": \"white\",\n        \"nationality\": \"Merica\",\n        \"pronouns\": [\n            \"he\",\n            \"goat\"\n        ]\n    },\n    \"work\": {\n        \"looking\": true,\n        \"jobs\": [\n            {\n                \"occupation\": \"Senior Software Engineer\",\n                \"company\": \"Rocket Homes\",\n                \"location\": {\n                    \"city\": \"Detroit\",\n                    \"state\": \"MI\",\n                    \"country\": \"USA\",\n                    \"zip\": \"48122\"\n                }\n            }\n        ]\n    },\n    \"addresses\": [\n        {\n            \"street\": \"313 Eminem St\",\n            \"city\": \"Detroit\",\n            \"state\": \"MI\",\n            \"country\": \"USA\",\n            \"zip\": \"48122\",\n            \"primary\": true\n        }\n    ],\n    \"social\": {\n        \"personal\": {\n            \"portfolio\": \"https://dejaniskra.com\",\n            \"facebook\": \"https://facebook.com/wutwut\",\n            \"twitter\": \"https://twitter.com/wutwut\",\n            \"instagram\": \"https://instagram.com/wutwut\",\n            \"tiktok\": \"https://tiktok.com/no\"\n        },\n        \"professional\": {\n            \"github\": \"https://github.com/dejaniskra\",\n            \"linked_in\": \"https://www.linkedin.com/in/dejan-iskra-131a1a177\"\n        },\n        \"gaming\": {\n            \"steam\": \"Macedonian10\",\n            \"riot\": \"Obel1x\",\n            \"origin\": \"iskradejan\",\n            \"playstation\": \"iskradejan\",\n            \"xbox\": \"no\",\n            \"nintendo\": \"no\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":userId",
+								"profile"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "61ea0daa3fbc33bfef6824a9"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"persona\": {\n        \"preferred_name\": \"Alex\",\n        \"suffix\": \"suffix\",\n        \"prefix\": \"Mr.\",\n        \"dob\": \"12/16/1990\",\n        \"sex\": \"male\",\n        \"languages\": [\n            \"English\",\n            \"Macedonian\"\n        ],\n        \"race\": \"Martian\",\n        \"ethnicity\": \"white\",\n        \"nationality\": \"Merica\",\n        \"pronouns\": [\n            \"he\",\n            \"goat\"\n        ]\n    },\n    \"work\": {\n        \"looking\": true,\n        \"jobs\": [\n            {\n                \"occupation\": \"Senior Software Engineer\",\n                \"company\": \"Rocket Homes\",\n                \"location\": {\n                    \"city\": \"Detroit\",\n                    \"state\": \"MI\",\n                    \"country\": \"USA\",\n                    \"zip\": \"48122\"\n                }\n            }\n        ]\n    },\n    \"addresses\": [\n        {\n            \"street\": \"250 S Batchewana Ave\",\n            \"city\": \"Detroit\",\n            \"state\": \"MI\",\n            \"country\": \"USA\",\n            \"zip\": \"48122\",\n            \"primary\": true\n        }\n    ],\n    \"social\": {\n        \"personal\": {\n            \"portfolio\": \"https://dejaniskra.com\",\n            \"facebook\": \"https://facebook.com/dejaniskra\",\n            \"twitter\": \"https://twitter.com/dejaniskra\",\n            \"instagram\": \"https://instagram.com/dejaniskra\",\n            \"tiktok\": \"https://tiktok.com/no\"\n        },\n        \"professional\": {\n            \"github\": \"https://github.com/iskra.dejan\",\n            \"linked_in\": \"https://linkedin.com/dejaniskra\"\n        },\n        \"gaming\": {\n            \"steam\": \"Macedonian10\",\n            \"riot\": \"Obel1x\",\n            \"origin\": \"iskradejan\",\n            \"playstation\": \"iskradejan\",\n            \"xbox\": \"no\",\n            \"nintendo\": \"no\"\n        }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61ea0daa3fbc33bfef6824a9"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Profile by userId: 61ea0daa3fbc33bfef6824a9 not found\",\n    \"name\": \"NotFoundError\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"persona\": {\n        \"preferred_name\": \"Alex\",\n        \"suffix\": \"suffix\",\n        \"prefix\": \"Mr.\",\n        \"dob\": \"12/17/1990\",\n        \"sex\": \"male\",\n        \"languages\": [\n            \"English\",\n            \"Macedonian\"\n        ],\n        \"race\": \"Martian\",\n        \"ethnicity\": \"white\",\n        \"nationality\": \"Merica\",\n        \"pronouns\": [\n            \"he\",\n            \"goat\"\n        ]\n    },\n    \"work\": {\n        \"looking\": true,\n        \"jobs\": [\n            {\n                \"occupation\": \"Senior Software Engineer\",\n                \"company\": \"Rocket Homes\",\n                \"location\": {\n                    \"city\": \"Detroit\",\n                    \"state\": \"MI\",\n                    \"country\": \"USA\",\n                    \"zip\": \"48122\"\n                }\n            }\n        ]\n    },\n    \"addresses\": [\n        {\n            \"street\": \"313 Eminem St\",\n            \"city\": \"Detroit\",\n            \"state\": \"MI\",\n            \"country\": \"USA\",\n            \"zip\": \"48122\",\n            \"primary\": true\n        }\n    ],\n    \"social\": {\n        \"personal\": {\n            \"portfolio\": \"https://bobisyouruncle.com\",\n            \"facebook\": \"https://facebook.com/wutwut\",\n            \"twitter\": \"https://twitter.com/wutwut\",\n            \"instagram\": \"https://instagram.com/wutwut\",\n            \"tiktok\": \"https://tiktok.com/no\"\n        },\n        \"professional\": {\n            \"github\": \"https://github.com/dejaniskra\",\n            \"linked_in\": \"https://www.linkedin.com/in/dejan-iskra-131a1a177\"\n        },\n        \"gaming\": {\n            \"steam\": \"Macedonian10\",\n            \"riot\": \"Obel1x\",\n            \"origin\": \"iskradejan\",\n            \"playstation\": \"iskradejan\",\n            \"xbox\": \"no\",\n            \"nintendo\": \"no\"\n        }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61ea0daa3fbc33bfef6824a9"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Delete Profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":userId",
+								"profile"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "61b178fdca9c9321d2af6816"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61b178fdca9c9321d2af6816"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/:userId/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"profile"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "61b178fdca9c9321d2af6816"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Profile by userId: 61b178fdca9c9321d2af6816 not found\",\n    \"name\": \"NotFoundError\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Password",
+			"item": [
+				{
+					"name": "Reset",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/password/reset?username=dejiskra@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"password",
+								"reset"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "dejiskra@gmail.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/password/reset?username=dejiskra@gmail.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"password",
+										"reset"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "dejiskra@gmail.com"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Change",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"dejiskra@mail.com\",\n    \"code\": \"UOYMC7\",\n    \"password\": \"Lol303030@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/password/reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"dejiskra@mail.com\",\n    \"code\": \"UOYMC7\",\n    \"password\": \"Lol303030@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/password/reset",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"password",
+										"reset"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"dejiskra@mail.com\",\n    \"code\": \"UOYMC7\",\n    \"password\": \"Lol303030@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/password/reset",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"password",
+										"reset"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Code: UOYMC7 not found\",\n    \"name\": \"NotFoundError\"\n}"
+						},
+						{
+							"name": "Failed Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"dejiskra@mail.com\",\n    \"code\": \"UOYMC7\",\n    \"password\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/password/reset",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"password",
+										"reset"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"validation_errors\": [\n        {\n            \"value\": \"\",\n            \"msg\": \"Invalid value\",\n            \"param\": \"password\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Verification",
+			"item": [
+				{
+					"name": "Request Email Verification",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/verification?username=dejiskra@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"verification"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "dejiskra@gmail.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/verification?username=dejiskra@gmail.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"verification"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "dejiskra@gmail.com"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Submit Email Verification",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"dejiskra@gmail.com\",\n    \"code\": \"S4S13Q\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/v1/users/verification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"verification"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"dejiskra@gmail.com\",\n    \"code\": \"S4S13Q\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/verification",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"verification"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"dejiskra@gmail.com\",\n    \"code\": \"S4S13Q\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/verification",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"verification"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"message\": \"dejiskra@gmail.com not found\",\n    \"name\": \"NotFoundError\"\n}"
+						},
+						{
+							"name": "Failed Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"dejiskra@gmail.com\",\n    \"code\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7000/api/v1/users/verification",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"verification"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"validation_errors\": [\n        {\n            \"value\": \"\",\n            \"msg\": \"Invalid value\",\n            \"param\": \"code\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "System",
+			"item": [
+				{
+					"name": "Version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/system/version",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"system",
+								"version"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/system/version",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"system",
+										"version"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"version\": \"1.1.1\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dev",
+			"item": [
+				{
+					"name": "Get All Codes For UserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/dev/users/:id/codes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"dev",
+								"users",
+								":id",
+								"codes"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "61edc2d48568a2f61c314d83"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/dev/users/:id/codes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"dev",
+										"users",
+										":id",
+										"codes"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "61edc2d48568a2f61c314d83"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"61edc2d48568a2f61c314d85\",\n        \"userId\": \"61edc2d48568a2f61c314d83\",\n        \"value\": \"ZUZWDE\",\n        \"type\": \"emailVerification\",\n        \"createDate\": \"2022-01-23T21:04:14.189Z\",\n        \"updateDate\": \"2022-01-23T21:04:14.189Z\"\n    },\n    {\n        \"id\": \"61edc2d09868a2f61c314d85\",\n        \"userId\": \"61edc2d48568a2f61c314d83\",\n        \"value\": \"PQIEQ2\",\n        \"type\": \"passwordReset\",\n        \"createDate\": \"2022-01-23T21:04:14.189Z\",\n        \"updateDate\": \"2022-01-23T21:04:14.189Z\"\n    },\n    {\n        \"id\": \"61edc2d13468a2f61c314d85\",\n        \"userId\": \"61edc2d48568a2f61c314d83\",\n        \"value\": \"321PAS\",\n        \"type\": \"usernameChange\",\n        \"createDate\": \"2022-01-23T21:04:14.189Z\",\n        \"updateDate\": \"2022-01-23T21:04:14.189Z\"\n    }\n]"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/dev/users/:id/codes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"dev",
+										"users",
+										":id",
+										"codes"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "61edc2d48568a2f61c314d83"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"User id: 61edc2d48568a2f61c314d32 not found\",\n    \"name\": \"NotFoundError\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Code By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/v1/dev/codes/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"v1",
+								"dev",
+								"codes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "61edc2d48568a2f61c314d81"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/dev/codes/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"dev",
+										"codes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "61edc2d48568a2f61c314d83"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7000/api/v1/dev/codes/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"api",
+										"v1",
+										"dev",
+										"codes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "61edc2d48568a2f61c314d81"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Code id: 61edc2d48568a2f61c314d81 not found\",\n    \"name\": \"NotFoundError\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Hopefully you know what you are doing :D These endpoints only work when running the stack locally.\n\nJokes aside, if email verification is turned on, upon user creation, an email gets fired off, however, when working locally, the email does not actually get sent out (for more details please see [https://github.com/dejaniskra/user-management#architecture](https://github.com/dejaniskra/user-management#architecture) ). So, since an email does not get sent out where the body of said email would contain the verification code needed to verify your email address, the way you can achieve that is by using these Dev endpoints."
+		}
+	]
+}
