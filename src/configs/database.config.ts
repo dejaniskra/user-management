@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { EnvironmentConfig } from "./environment.config";
+import * as logger from "../services/helper/logger";
 
 export class DatabaseConfig {
     private static instance: DatabaseConfig;
@@ -22,10 +23,10 @@ export class DatabaseConfig {
         mongoose.connect(uri);
         DatabaseConfig.database = mongoose.connection;
         DatabaseConfig.database.once("open", async () => {
-            console.log("Connected to database");
+            logger.info("Connected to database");
         });
         DatabaseConfig.database.on("error", () => {
-            console.log("Error connecting to database");
+            logger.info("Error connecting to database");
         });
     };
 

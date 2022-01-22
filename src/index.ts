@@ -21,7 +21,7 @@ const databaseConfig = DatabaseConfig.getInstance();
 const awsConfig = AWSConfig.getInstance();
 
 if (!process.env.PORT) {
-   console.error("PORT not specified");
+   logger.error("PORT not specified");
    
    process.exit(1);
 }
