@@ -15,6 +15,7 @@ import { AWSConfig } from "./configs/aws.config";
 import * as logger from "./services/helper/logger";
 
 const fileUpload = require('express-fileupload');
+console.log("da");
 
 const loggerConfig = LoggerConfig.getInstance();
 const databaseConfig = DatabaseConfig.getInstance();
